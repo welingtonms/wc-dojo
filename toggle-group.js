@@ -30,13 +30,18 @@ export class ToggleGroup extends LitElement {
 
     this.defaultSlot = null;
     this.selection = new Set();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.selectStrategy = createSelectionStrategy({type: this.type});
 
     this.addEventListener('m-toggle', this._handleToggle);
   }
 
   firstUpdated() {
     this.defaultSlot = this.renderRoot?.querySelector('slot');
-    this.selectStrategy = createSelectionStrategy({type: this.type});
   }
 
   updated() {
@@ -44,9 +49,9 @@ export class ToggleGroup extends LitElement {
       ...this.defaultSlot.assignedElements({flatten: true}),
     ].filter((item) => item.tagName.toLowerCase() === 'm-toggle');
 
-    toggles.forEach( ( toggle ) => {
-      toggle.checked = this.selection.has( toggle.value );
-  } );
+    toggles.forEach((toggle) => {
+      toggle.checked = this.selection.has(toggle.value);
+    });
   }
 
   render() {
@@ -70,7 +75,7 @@ export class ToggleGroup extends LitElement {
       })
     );
 
-    this.requestUpdate()
+    this.requestUpdate();
 
     console.log(this.selection);
   }
