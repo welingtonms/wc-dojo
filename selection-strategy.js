@@ -1,4 +1,4 @@
-import toArray from '../to-array';
+import toArray from './to-array';
 
 // type AcceptedType = string;
 
@@ -79,7 +79,7 @@ export function SingleSelectionStrategy() {
      * @returns {SelectionState}
      */
     unselect(value, selection) {
-      const safeValues = toArray(values);
+      const safeValues = toArray(value);
 
       if (safeValues.length == 0 || selection.size == 0) {
         return selection;
