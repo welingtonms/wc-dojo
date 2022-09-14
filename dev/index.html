@@ -6,17 +6,32 @@
     <title>&lt;my-element> Demo</title>
     <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../node_modules/lit/polyfill-support.js"></script>
-    <script type="module" src="../my-element.js"></script>
+    <script type="module" src="../toggle.js"></script>
+    <script type="module" src="../toggle-group.js"></script>
     <style>
       p {
         border: solid 1px blue;
         padding: 8px;
       }
     </style>
+
+    <script>
+      document.addEventListener('m-change', (e) => console.log('document', e))
+    </script>
   </head>
   <body>
-    <my-element>
-      <p>This is child content</p>
-    </my-element>
+    <m-toggle-group type="single">
+      <m-toggle value="accept">Accept</m-toggle>
+      <m-toggle value="change">Change</m-toggle>
+      <m-toggle value="leave">Leave</m-toggle>
+    </m-toggle-group>
+
+    <hr>
+
+    <m-toggle-group type="multiple">
+      <m-toggle value="accept">Accept</m-toggle>
+      <m-toggle value="change">Change</m-toggle>
+      <m-toggle value="leave">Leave</m-toggle>
+    </m-toggle-group>
   </body>
 </html>
